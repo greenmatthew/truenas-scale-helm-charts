@@ -1,0 +1,29 @@
+apiVersion: v2
+kubeVersion: ">=1.16.0-0"
+name: apache2-php
+version: 4.0.3
+appVersion: 1.0.0
+description: apache2-php App for TrueNAS SCALE
+type: application
+deprecated: false
+home: https://github.com/truecharts/charts/tree/master/charts/stable/CHARTNAME
+icon: https://raw.githubusercontent.com/chvb/docker-templates/master/chvb/img/apache-php.png
+keywords:
+  - apache2-php
+sources:
+  - https://github.com/truecharts/charts/tree/master/charts/CHARTNAME
+dependencies:
+- name: common
+  repository: https://library-charts.truecharts.org
+  version: 14.0.6
+    # condition:
+maintainers:
+- email: info@truecharts.org
+  name: TrueCharts
+  url: https://truecharts.org
+annotations:
+  truecharts.org/catagories: |
+    - media
+    - test
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
