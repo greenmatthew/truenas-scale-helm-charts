@@ -1,5 +1,5 @@
 image:
-  repository: greenmatthew/apache2-php
+  repository: https://hub.docker.com/r/greenmatthew/apache2-php
   tag: "latest"
   pullPolicy: IfNotPresent
 
@@ -24,41 +24,3 @@ portal:
 
 ingress:
   enabled: false
-
-workload:
-  main:
-    podSpec:
-      initContainers:
-        1-init-directories:
-          enabled: true
-          imageSelector: image
-          type: init
-          command:
-            - "/usr/sbin/init_directory_structure.sh"
-          securityContext:
-            runAsUser: 0
-            runAsNonRoot: false
-          envFrom:
-            - configMapRef:
-                name: apache2-env
-        2-configure-apache:
-          enabled: true
-          imageSelector: image
-          type: init
-          command:
-            - "/usr/sbin/configure_apache.sh"
-          envFrom:
-            - configMapRef:
-                name: apache2-env
-      containers:
-        main:
-          probes:
-            liveness:
-              type: tcp
-            readiness:
-              type: tcp
-            startup:
-              type: tcp
-          envFrom:
-            - configMapRef:
-                name: apache2-env
