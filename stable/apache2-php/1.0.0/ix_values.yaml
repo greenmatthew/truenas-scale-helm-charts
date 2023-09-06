@@ -1,5 +1,5 @@
 image:
-  repository: https://hub.docker.com/r/greenmatthew/apache2-php
+  repository: greenmatthew/apache2-php
   tag: "latest"
   pullPolicy: IfNotPresent
 
