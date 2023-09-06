@@ -13,9 +13,9 @@ sources:
   - https://git.matthewgreen.gg/mgreen/truenas-scale-helm-charts/tree/master/charts/stable/apache2-php
   - https://github.com/greenmatthew/truenas-scale-helm-charts/tree/master/charts/stable/apache2-php
 dependencies:
-- name: common
-  repository: https://library-charts.truecharts.org
-  version: 14.0.6
+# - name: common
+#   repository: https://library-charts.truecharts.org
+#   version: 14.0.6
     # condition:
 maintainers:
 - email: greenmatthew07@gmail.com
