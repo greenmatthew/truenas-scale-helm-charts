@@ -10,17 +10,55 @@ service:
         port: 9080
         targetPort: 80
 
-# persistence:
-#   config:
-#     enabled: true
-#     mountPath: "/etc/apache2"
-#   htdocs:
-#     enabled: true
-#     mountPath: "/var/www/localhost/htdocs"
+persistence:
+  config:
+    enabled: true
+    mountPath: "/etc/apache2"
+  htdocs:
+    enabled: true
+    mountPath: "/var/www/localhost/htdocs"
 
-# portal:
-#   open:
-#     enabled: true
+portal:
+  open:
+    enabled: true
 
-# ingress:
-#   enabled: false
+ingress:
+  enabled: false
+
+workload:
+  main:
+    podSpec:
+      initContainers:
+        1-init-directories:
+          enabled: true
+          imageSelector: image
+          type: init
+          command:
+            - "/usr/sbin/init_directory_structure.sh"
+          securityContext:
+            runAsUser: 0
+            runAsNonRoot: false
+          envFrom:
+            - configMapRef:
+                name: apache2-env
+        2-configure-apache:
+          enabled: true
+          imageSelector: image
+          type: init
+          command:
+            - "/usr/sbin/configure_apache.sh"
+          envFrom:
+            - configMapRef:
+                name: apache2-env
+      containers:
+        main:
+          probes:
+            liveness:
+              type: tcp
+            readiness:
+              type: tcp
+            startup:
+              type: tcp
+          envFrom:
+            - configMapRef:
+                name: apache2-env
