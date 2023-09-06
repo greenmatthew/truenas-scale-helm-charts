@@ -2,3 +2,25 @@ image:
   repository: greenmatthew/apache2-php
   tag: "latest"
   pullPolicy: IfNotPresent
+
+service:
+  main:
+    ports:
+      main:
+        port: 9080
+        targetPort: 80
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/etc/apache2"
+  htdocs:
+    enabled: true
+    mountPath: "/var/www/localhost/htdocs"
+
+portal:
+  open:
+    enabled: true
+
+ingress:
+  enabled: false
