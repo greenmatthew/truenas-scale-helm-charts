@@ -223,109 +223,6 @@ questions:
                             schema:
                               type: string
                               required: true
-  - variable: admin
-    group: "App Configuration"
-    label: "Admin Credentials"
-    schema:
-      additional_attrs: true
-      type: dict
-      attrs:
-        - variable: username
-          label: "username"
-          schema:
-            type: string
-            valid_chars: '^(?!^admin$).*$'
-            required: true
-        - variable: password
-          label: "password"
-          schema:
-            type: string
-            required: true
-            private: true
-        - variable: email
-          label: "email"
-          schema:
-            type: string
-            required: true
-  - variable: config
-    group: "App Configuration"
-    label: "Admin Configuration"
-    schema:
-      additional_attrs: true
-      type: dict
-      attrs:
-        - variable: APP_NAME
-          label: "APP_NAME"
-          schema:
-            type: string
-            default: "Gitea"
-            required: true
-        - variable: RUN_MODE
-          label: "RUN_MODE"
-          schema:
-            type: string
-            default: "prod"
-            enum:
-              - value: "prod"
-                description: "Production"
-              - value: "dev"
-                description: "Development"
-              - value: "test"
-                description: "Testing"
-        - variable: ALLOWED_HOST_LIST
-          label: "ALLOWED_HOST_LIST"
-          schema:
-            type: string
-            default: "127.0.0.1"
-            required: true
-        - variable: nodeIP
-          label: Node IP
-          description: Used to generate configuration, when installed without ingress
-          schema:
-            type: string
-            required: true
-            $ref:
-              - "definitions/nodeIP"
-  - variable: customConfig
-    group: "App Configuration"
-    label: "Custom Configuration parameters"
-    schema:
-      type: list
-      default: []
-      items:
-        - variable: catagoryItem
-          label: "Catagory"
-          schema:
-            additional_attrs: true
-            type: dict
-            attrs:
-              - variable: name
-                label: "Config Catagory Name"
-                schema:
-                  type: string
-                  required: true
-              - variable: keys
-                label: "Configuration Parameters"
-                schema:
-                  type: list
-                  default: []
-                  items:
-                    - variable: configItem
-                      label: "parameter"
-                      schema:
-                        additional_attrs: true
-                        type: dict
-                        attrs:
-                          - variable: name
-                            label: "Parameter Name"
-                            schema:
-                              type: string
-                              required: true
-                          - variable: value
-                            label: "Parameter Value"
-                            schema:
-                              type: string
-                              required: true
   - variable: service
     group: Networking and Services
     label: Configure Service(s)
@@ -381,57 +278,7 @@ questions:
                             description: "This port exposes the container port on the service"
                             schema:
                               type: int
-                              default: 10037
-                              required: true
-        - variable: ssh
-          label: "SSH Service"
-          description: "The SSH service"
-          schema:
-            additional_attrs: true
-            type: dict
-            attrs:
-              - variable: enabled
-                label: Enable the Service
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: type
-                label: Service Type
-                description: "ClusterIP's are only internally available and Loadbalancer exposes the service using the system loadbalancer"
-                schema:
-                  type: string
-                  default: LoadBalancer
-                  enum:
-                    - value: LoadBalancer
-                      description: LoadBalancer (Expose Ports)
-                    - value: ClusterIP
-                      description: ClusterIP (Do Not Expose Ports)
-              - variable: loadBalancerIP
-                label: LoadBalancer IP
-                description: "MetalLB Only: Selects the Loadbalancer IP to expose on. Required when using PortalButton with MetalLB"
-                schema:
-                  show_if: [["type", "=", "LoadBalancer"]]
-                  type: string
-                  default: ""
-              - variable: ports
-                label: "Service's Port(s) Configuration"
-                schema:
-                  additional_attrs: true
-                  type: dict
-                  attrs:
-                    - variable: ssh
-                      label: "SSH Service Port Configuration"
-                      schema:
-                        additional_attrs: true
-                        type: dict
-                        attrs:
-                          - variable: port
-                            label: "Port"
-                            description: "This port exposes the container port on the service"
-                            schema:
-                              type: int
-                              default: 2222
+                              default: 9080
                               required: true
   - variable: serviceexpert
     group: Networking and Services
@@ -1204,13 +1051,13 @@ questions:
                 description: "The UserID of the user running the application"
                 schema:
                   type: int
-                  default: 1000
+                  default: 568
               - variable: runAsGroup
                 label: "runAsGroup"
                 description: "The groupID of the user running the application"
                 schema:
                   type: int
-                  default: 1000
+                  default: 568
               # Settings from questions.yaml get appended here on a per-app basis
               - variable: PUID
                 label: Process User ID - PUID
@@ -1275,7 +1122,7 @@ questions:
           description: "The group that should own ALL storage."
           schema:
             type: int
-            default: 1000
+            default: 568
 
   - variable: resources
     group: Resources and Devices
