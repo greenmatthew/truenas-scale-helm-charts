@@ -2,7 +2,6 @@ apiVersion: v2
 kubeVersion: ">=1.16.0-0"
 name: apache2-php
 version: 1.0.0
-appVersion: 1.0.0
 description: apache2-php App for TrueNAS SCALE
 type: application
 deprecated: false
@@ -22,8 +21,3 @@ maintainers:
 - email: greenmatthew07@gmail.com
   name: Matthew Green
   url: https://www.matthewgreen.gg
-annotations:
-  truecharts.org/catagories: |
-    - media
-  truecharts.org/SCALE-support: "true"
-  truecharts.org/grade: U
