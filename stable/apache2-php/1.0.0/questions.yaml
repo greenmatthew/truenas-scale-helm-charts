@@ -15,10 +15,10 @@ groups:
     description: "Ingress Configuration"
   - name: "Security"
     description: "Configure security context"
-  - name: "Advanced"
-    description: "Advanced Configuration"
-  - name: "WARNING"
-    description: "WARNING"
+  # - name: "Advanced"
+  #   description: "Advanced Configuration"
+  # - name: "WARNING"
+  #   description: "WARNING"
 portals:
   open:
     protocols:
