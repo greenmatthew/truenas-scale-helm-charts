@@ -1,4 +1,0 @@
-image:
-  repository: greenmatthew/apache2-php
-  tag: "latest"
-  pullPolicy: IfNotPresent
